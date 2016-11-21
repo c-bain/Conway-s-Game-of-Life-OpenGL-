@@ -1,0 +1,12 @@
+Instructions:
+
+Press c to clear the grid
+Press r to refresh and randomize the grid
+Press p to pause/run the program
+Press s for speed control: Normal(Default)->Slower->Slower->Slower->Normal
+Press q to quit the program
+To edit the grid with user clicks, click the grid while the game is in motion. To edit cells while paused, click the grid
+then unpause the game to see the new cells created.
+
+Thanks for playing!
+Have a nice day :D
