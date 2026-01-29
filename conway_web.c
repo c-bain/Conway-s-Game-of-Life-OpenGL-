@@ -246,14 +246,14 @@ void display(void)
 			rules();//rules of Conway
 			drawCells();//redraws board with all new cells
 			drawGrid();
-			glFlush();
+			glutSwapBuffers();
 		}if(clear==true){
 			clearBoard();	
 		}if( randomize==true ){
 			drawCellsInitial();
 			randomize=!randomize;
 			clear=false;
-			glFlush();		
+			glutSwapBuffers();
 		}
 
 }
@@ -277,7 +277,7 @@ int main(int argc, char** argv)
 	}
 	drawCellsInitial();//set down a few live cells in the beginning
 	glutInit(&argc, argv);		//starts up GLUT
-	glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
 	glutInitWindowSize(700,700);
 	glutInitWindowPosition(0,0);
 	glutCreateWindow("Conway's Game of Life");	//creates the window

@@ -3,6 +3,31 @@
 # Build script for Conway's Game of Life WebAssembly version
 echo "Building Conway's Game of Life for the web..."
 
+# Try to load Emscripten if emcc is not in PATH
+if ! command -v emcc &>/dev/null; then
+    for emsdk in "$HOME/emsdk/emsdk_env.sh" "/opt/emsdk/emsdk_env.sh"; do
+        if [ -f "$emsdk" ]; then
+            echo "Sourcing Emscripten from $emsdk"
+            # shellcheck source=/dev/null
+            source "$emsdk" 2>/dev/null || . "$emsdk" 2>/dev/null
+            break
+        fi
+    done
+fi
+
+if ! command -v emcc &>/dev/null; then
+    echo "Error: emcc (Emscripten) not found."
+    echo ""
+    echo "Install Emscripten SDK (emsdk), then run this script again:"
+    echo "  git clone https://github.com/emscripten-core/emsdk.git \$HOME/emsdk"
+    echo "  cd \$HOME/emsdk"
+    echo "  ./emsdk install latest"
+    echo "  ./emsdk activate latest"
+    echo "  source ./emsdk_env.sh"
+    echo "  cd - && ./build_web.sh"
+    exit 1
+fi
+
 emcc conway_web.c \
     -o conway.js \
     -lglut \
