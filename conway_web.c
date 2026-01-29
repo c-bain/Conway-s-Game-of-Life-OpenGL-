@@ -287,12 +287,7 @@ int main(int argc, char** argv)
 	glutMouseFunc(mouse);
 	glutTimerFunc(0, FPS, 0);
 	glClearColor(1, 1, 1, 1);
-	
-#ifdef __EMSCRIPTEN__
-	emscripten_set_main_loop(display, 0, 1);
-#else
 	glutMainLoop();				//starts the event loop
-#endif
 	
 	return(0);					//return may not be necessary on all compilers
 }

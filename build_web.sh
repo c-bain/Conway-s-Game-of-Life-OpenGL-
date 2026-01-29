@@ -5,19 +5,23 @@ echo "Building Conway's Game of Life for the web..."
 
 emcc conway_web.c \
     -o conway.js \
-    -s USE_GLUT=3 \
+    -lglut \
     -s ALLOW_MEMORY_GROWTH=1 \
-    -s LEGACY_GL_EMULATION=1 \
-    -s GL_UNSAFE_OPTS=0 \
-    --shell-file index.html \
-    -O3
+    -s FULL_ES2=1 \
+    -O2
 
 if [ $? -eq 0 ]; then
     echo "Build successful!"
-    echo "Open index.html in a web browser to run the game."
-    echo "You can use a local web server like:"
-    echo "  python3 -m http.server 8000"
-    echo "Then open http://localhost:8000 in your browser."
+    echo ""
+    echo "To run the game:"
+    echo "1. Start a local web server:"
+    echo "   python3 -m http.server 8000"
+    echo ""
+    echo "2. Open http://localhost:8000 in your browser"
+    echo ""
+    echo "Note: The system version of Emscripten (3.1.6) has limited"
+    echo "OpenGL support. For best results, use Emscripten 3.1.20 or later"
+    echo "which has better GLUT/OpenGL emulation."
 else
     echo "Build failed!"
     exit 1

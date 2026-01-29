@@ -74,6 +74,8 @@
             border: 3px solid #667eea;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 700px;
+            height: 700px;
         }
 
         #output {
@@ -152,6 +154,12 @@
 
         <canvas id="canvas" style="display:none;"></canvas>
         
+        <div id="note" style="background: #fff3cd; border: 1px solid #ffc107; border-radius: 10px; padding: 15px; margin-top: 20px; color: #856404; display:none;">
+            <strong>📝 Note:</strong> If you see a blank canvas, the OpenGL rendering may not be fully supported by the Emscripten version used. 
+            The application is running, but graphics rendering requires a newer Emscripten version (3.1.20+) with better OpenGL emulation.
+            Try pressing <strong>R</strong> to refresh or check the console output below for activity.
+        </div>
+        
         <div id="output"></div>
     </div>
 
@@ -177,11 +185,18 @@
             })(),
             canvas: (function() {
                 var canvas = document.getElementById('canvas');
+                // Set the size attributes for Emscripten
+                canvas.width = 700;
+                canvas.height = 700;
                 return canvas;
             })(),
             onRuntimeInitialized: function() {
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('canvas').style.display = 'block';
+                // Show note after a delay to let rendering attempt
+                setTimeout(function() {
+                    document.getElementById('note').style.display = 'block';
+                }, 2000);
             }
         };
     </script>
