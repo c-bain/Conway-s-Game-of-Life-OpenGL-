@@ -1,0 +1,17 @@
+# Compiled files
+*.o
+*.out
+*.exe
+*.x
+Conway.x
+
+# Editor files
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
