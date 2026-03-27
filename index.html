@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conway Reframed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <p class="eyebrow">Conway's Game of Life</p>
+        <h1>Reinvented for the browser.</h1>
+        <p class="intro">
+          This version keeps the original simulation spirit, but wraps it in a
+          web-native control room where you can seed, sculpt, and watch each
+          generation evolve in real time.
+        </p>
+      </section>
+
+      <section class="dashboard">
+        <aside class="panel controls">
+          <div class="panel-header">
+            <h2>Simulation</h2>
+            <span id="status-pill" class="status-pill">Running</span>
+          </div>
+
+          <div class="button-row">
+            <button id="toggle-run" class="primary">Pause</button>
+            <button id="step-once">Step</button>
+          </div>
+
+          <div class="button-row">
+            <button id="randomize">Randomize</button>
+            <button id="clear">Clear</button>
+          </div>
+
+          <label class="field">
+            <span>Speed</span>
+            <input
+              id="speed"
+              type="range"
+              min="60"
+              max="600"
+              step="10"
+              value="220"
+            />
+            <small id="speed-label">220 ms / generation</small>
+          </label>
+
+          <label class="field">
+            <span>Density</span>
+            <input
+              id="density"
+              type="range"
+              min="10"
+              max="75"
+              step="5"
+              value="35"
+            />
+            <small id="density-label">35% live cells on randomize</small>
+          </label>
+
+          <label class="field">
+            <span>Pattern</span>
+            <select id="pattern-picker">
+              <option value="none">Free draw</option>
+              <option value="glider">Glider</option>
+              <option value="blinker">Blinker</option>
+              <option value="toad">Toad</option>
+              <option value="lightweight-spaceship">LWSS</option>
+              <option value="pulsar">Pulsar</option>
+            </select>
+            <small>Choose a pattern, then click the grid to stamp it.</small>
+          </label>
+
+          <p class="hint">
+            Click or drag across the grid to toggle cells. The simulation keeps
+            evolving while you paint, just like the native version.
+          </p>
+        </aside>
+
+        <section class="stage">
+          <div class="stats">
+            <article class="stat-card">
+              <span>Generation</span>
+              <strong id="generation">0</strong>
+            </article>
+            <article class="stat-card">
+              <span>Live Cells</span>
+              <strong id="live-cells">0</strong>
+            </article>
+            <article class="stat-card">
+              <span>Grid</span>
+              <strong id="grid-size">48 x 32</strong>
+            </article>
+          </div>
+
+          <div class="canvas-wrap">
+            <canvas
+              id="life-canvas"
+              width="960"
+              height="640"
+              aria-label="Interactive Conway's Game of Life grid"
+            ></canvas>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
